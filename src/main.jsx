@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         path: "/products/:id",
         element: <ProductCardDetails></ProductCardDetails>,
         loader: ({ params }) => {
-          return fetch(`http://localhost:3000/products/${params.id}`)
+          return fetch(`${import.meta.env.VITE_API_URL}/products/${params.id}`)
         }
       }
     ],

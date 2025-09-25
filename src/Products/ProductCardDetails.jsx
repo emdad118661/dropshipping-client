@@ -17,7 +17,7 @@ const ProductCardDetails = () => {
         const controller = new AbortController();
         (async () => {
             try {
-                const res = await fetch(`http://localhost:3000/products/${id}`, { signal: controller.signal });
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/products/${id}`, { signal: controller.signal });
                 const data = await res.json();
                 setProduct(data);
                 setSelectedSize(Array.isArray(data?.size) && data.size.length ? data.size[0] : null);
