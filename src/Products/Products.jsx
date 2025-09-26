@@ -64,7 +64,7 @@ const Products = () => {
       />
 
       {/* Sort control */}
-      <div className="w-48 mt-5">
+      <div className="w-48 px-2 mt-5 md:px-0">
         <div className="block mb-2">
           <Label htmlFor="sort-by">Sort By</Label>
         </div>
