@@ -10,6 +10,7 @@ import error from './assets/Error.png'
 import Home from './Home/Home.jsx';
 import Products from './Products/Products.jsx';
 import ProductCardDetails from './Products/ProductCardDetails.jsx';
+import CategoryProducts from './Choose-By-Category/CategoryProducts.jsx';
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         loader: ({ params }) => {
           return fetch(`${import.meta.env.VITE_API_URL}/products/${params.id}`)
         }
+      },
+      {
+        path: "/category/:slug",
+        element: <CategoryProducts></CategoryProducts>
       }
     ],
   },

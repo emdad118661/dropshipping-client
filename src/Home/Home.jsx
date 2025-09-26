@@ -2,6 +2,7 @@ import React from 'react'
 import BannerCarousel from './BannerCarousel'
 import BestSeller from './BestSeller'
 import NewArrival from './NewArrival'
+import ChooseByCategory from './ChooseByCategory'
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <BannerCarousel></BannerCarousel>
       <BestSeller></BestSeller>
       <NewArrival></NewArrival>
+      <ChooseByCategory></ChooseByCategory>
     </div>
   )
 }
