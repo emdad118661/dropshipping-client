@@ -7,6 +7,7 @@ import ChooseByCategory from './ChooseByCategory'
 const Home = () => {
   return (
     <div>
+      {/* new desktop found */}
       <BannerCarousel></BannerCarousel>
       <BestSeller></BestSeller>
       <NewArrival></NewArrival>
