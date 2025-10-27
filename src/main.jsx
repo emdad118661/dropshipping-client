@@ -11,6 +11,9 @@ import Home from './Home/Home.jsx';
 import Products from './Products/Products.jsx';
 import ProductCardDetails from './Products/ProductCardDetails.jsx';
 import CategoryProducts from './Choose-By-Category/CategoryProducts.jsx';
+import Login from './login-registration/login.jsx';
+import Registration from './login-registration/Registration.jsx';
+import RegistrationByAdmin from './login-registration/RegistrationByAdmin.jsx';
 
 
 const router = createBrowserRouter([
@@ -49,6 +52,18 @@ const router = createBrowserRouter([
       {
         path: "/category/:slug",
         element: <CategoryProducts></CategoryProducts>
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Registration></Registration>
+      },
+      {
+        path: "/admin-register",
+        element: <RegistrationByAdmin></RegistrationByAdmin>
       }
     ],
   },

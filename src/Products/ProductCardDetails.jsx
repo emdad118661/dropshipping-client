@@ -88,7 +88,7 @@ const ProductCardDetails = () => {
                         checked={selectedColor === c}
                         onChange={() => setSelectedColor(c)}
                       />
-                      <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 transition bg-white border-2 border-gray-200 rounded-full hover:border-gray-300 peer-checked:border-black peer-checked:bg-black peer-checked:text-white peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-blue-500 peer-focus-visible:ring-offset-2">
+                      <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 transition bg-white border-2 border-gray-200 rounded-full hover:border-gray-300 peer-checked:border-black peer-checked:bg-neutral peer-checked:text-white peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-blue-500 peer-focus-visible:ring-offset-2">
                         {c}
                       </span>
                     </label>
@@ -115,7 +115,7 @@ const ProductCardDetails = () => {
                         checked={selectedSize === s}
                         onChange={() => setSelectedSize(s)}
                       />
-                      <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 transition bg-white border-2 border-gray-200 rounded-full hover:border-gray-300 peer-checked:border-black peer-checked:bg-black peer-checked:text-white peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-blue-500 peer-focus-visible:ring-offset-2">
+                      <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 transition bg-white border-2 border-gray-200 rounded-full hover:border-gray-300 peer-checked:border-black peer-checked:bg-neutral peer-checked:text-white peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-blue-500 peer-focus-visible:ring-offset-2">
                         {s}
                       </span>
                     </label>
@@ -138,7 +138,7 @@ const ProductCardDetails = () => {
                 type="button"
                 onClick={dec}
                 disabled={qty <= 1}
-                className="w-10 h-10 text-xl leading-none text-white transition bg-black rounded-l-full disabled:cursor-not-allowed disabled:opacity-40"
+                className="w-10 h-10 text-xl leading-none text-white transition bg-neutral rounded-l-full disabled:cursor-not-allowed disabled:opacity-40"
                 aria-label="Decrease quantity"
               >
                 -
@@ -161,7 +161,7 @@ const ProductCardDetails = () => {
                 type="button"
                 onClick={inc}
                 disabled={qty >= stock}
-                className="w-10 h-10 text-xl leading-none text-white transition bg-black rounded-r-full disabled:cursor-not-allowed disabled:opacity-40"
+                className="w-10 h-10 text-xl leading-none text-white transition bg-neutral rounded-r-full disabled:cursor-not-allowed disabled:opacity-40"
                 aria-label="Increase quantity"
               >
                 +
@@ -176,10 +176,10 @@ const ProductCardDetails = () => {
 
           {/* Buttons */}
           <div>
-            <button className="w-full py-3 mt-6 font-semibold text-white transition bg-black rounded-full hover:bg-gray-800">
+            <button className="w-full py-3 mt-6 font-semibold text-white transition bg-neutral rounded-full hover:bg-gray-800">
               Add to Cart
             </button>
-            <button className="w-full py-3 mt-2 font-semibold text-white transition bg-black rounded-full hover:bg-gray-800">
+            <button className="w-full py-3 mt-2 font-semibold text-white transition bg-neutral rounded-full hover:bg-gray-800">
               Buy Now
             </button>
           </div>

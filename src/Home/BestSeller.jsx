@@ -67,7 +67,7 @@ const BestSeller = () => {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
             <a
               href="#"
-              className="rounded-lg bg-black px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-black dark:focus:ring-cyan-800"
+              className="rounded-lg bg-neutral px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-neutral dark:focus:ring-cyan-800"
             >
               Add to cart
             </a>
@@ -132,7 +132,7 @@ const BestSeller = () => {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
             <a
               href="#"
-              className="rounded-lg bg-black px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-black dark:focus:ring-cyan-800"
+              className="rounded-lg bg-neutral px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-neutral dark:focus:ring-cyan-800"
             >
               Add to cart
             </a>
@@ -197,7 +197,7 @@ const BestSeller = () => {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
             <a
               href="#"
-              className="rounded-lg bg-black px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-black dark:focus:ring-cyan-800"
+              className="rounded-lg bg-neutral px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-neutral dark:focus:ring-cyan-800"
             >
               Add to cart
             </a>
@@ -262,7 +262,7 @@ const BestSeller = () => {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">$599</span>
             <a
               href="#"
-              className="rounded-lg bg-black px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-black dark:focus:ring-cyan-800"
+              className="rounded-lg bg-neutral px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-neutral dark:focus:ring-cyan-800"
             >
               Add to cart
             </a>
@@ -270,7 +270,7 @@ const BestSeller = () => {
         </Card>
       </div>
       <div className="flex justify-center mt-10">
-        <button className="px-5 py-2.5 bg-black rounded-lg text-white">
+        <button className="px-5 py-2.5 bg-neutral rounded-lg text-white">
           View All
         </button>
       </div>
