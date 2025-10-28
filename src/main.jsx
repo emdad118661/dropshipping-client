@@ -14,6 +14,7 @@ import CategoryProducts from './Choose-By-Category/CategoryProducts.jsx';
 import Login from './login-registration/login.jsx';
 import Registration from './login-registration/Registration.jsx';
 import RegistrationByAdmin from './login-registration/RegistrationByAdmin.jsx';
+import RequireAuth from './routes/RequireAuth.jsx';
 
 
 const router = createBrowserRouter([
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/products/:id",
-        element: <ProductCardDetails></ProductCardDetails>,
+        element: <RequireAuth><ProductCardDetails></ProductCardDetails></RequireAuth>,
         loader: ({ params }) => {
           return fetch(`${import.meta.env.VITE_API_URL}/products/${params.id}`)
         }
