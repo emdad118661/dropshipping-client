@@ -15,6 +15,8 @@ import Login from './login-registration/login.jsx';
 import Registration from './login-registration/Registration.jsx';
 import RegistrationByAdmin from './login-registration/RegistrationByAdmin.jsx';
 import RequireAuth from './routes/RequireAuth.jsx';
+import AccountDetails from './login-registration/AccountDetails.jsx';
+import GuestOnly from './routes/GuestOnly.jsx';
 
 
 const router = createBrowserRouter([
@@ -56,15 +58,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login></Login>
+        element: <GuestOnly to="/account" autoRedirect={true}><Login></Login></GuestOnly>
       },
       {
         path: "/register",
-        element: <Registration></Registration>
+        element: <GuestOnly to="/account" autoRedirect={false}><Registration></Registration></GuestOnly>
       },
       {
         path: "/admin-register",
         element: <RegistrationByAdmin></RegistrationByAdmin>
+      },
+      {
+        path: "/account",
+        element: <RequireAuth><AccountDetails></AccountDetails></RequireAuth>
       }
     ],
   },
