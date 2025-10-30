@@ -61,6 +61,8 @@ const AccountDetails = () => {
     );
   }
 
+  const isSuperadmin = user?.role === 'superadmin';
+
   return (
     <div className='md:mx-auto mt-20 max-w-7xl mx-3'>
       <HeadSubhead title="My Account" subtitle="About you" />
@@ -75,12 +77,23 @@ const AccountDetails = () => {
         </div>
       </div>
 
-      <button
-        className="btn btn-neutral mt-6"
-        onClick={() => navigate('/account/edit')}
-      >
-        Edit
-      </button>
+      <div className="mt-6 flex gap-3">
+        <button
+          className="btn btn-neutral"
+          onClick={() => navigate('/account/edit')}
+        >
+          Edit
+        </button>
+
+        {isSuperadmin && (
+          <button
+            className="btn btn-primary"
+            onClick={() => navigate('/admin-register')}
+          >
+            Create new admin
+          </button>
+        )}
+      </div>
     </div>
   );
 };

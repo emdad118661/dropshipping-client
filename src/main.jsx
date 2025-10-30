@@ -18,6 +18,7 @@ import RequireAuth from './routes/RequireAuth.jsx';
 import AccountDetails from './login-registration/AccountDetails.jsx';
 import GuestOnly from './routes/GuestOnly.jsx';
 import EditAccount from './login-registration/EditAccount.jsx';
+import SuperadminOnly from './routes/SuperadminOnly.jsx';
 
 
 const router = createBrowserRouter([
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin-register",
-        element: <RegistrationByAdmin></RegistrationByAdmin>
+        element: <SuperadminOnly><RegistrationByAdmin></RegistrationByAdmin></SuperadminOnly>
       },
       {
         path: "/account",
