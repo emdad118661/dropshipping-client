@@ -17,6 +17,7 @@ import RegistrationByAdmin from './login-registration/RegistrationByAdmin.jsx';
 import RequireAuth from './routes/RequireAuth.jsx';
 import AccountDetails from './login-registration/AccountDetails.jsx';
 import GuestOnly from './routes/GuestOnly.jsx';
+import EditAccount from './login-registration/EditAccount.jsx';
 
 
 const router = createBrowserRouter([
@@ -71,6 +72,14 @@ const router = createBrowserRouter([
       {
         path: "/account",
         element: <RequireAuth><AccountDetails></AccountDetails></RequireAuth>
+      },
+      {
+        path: "/account/edit",
+        element: (
+          <RequireAuth>
+            <EditAccount />
+          </RequireAuth>
+        )
       }
     ],
   },
