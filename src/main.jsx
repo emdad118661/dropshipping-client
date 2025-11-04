@@ -19,6 +19,8 @@ import AccountDetails from './login-registration/AccountDetails.jsx';
 import GuestOnly from './routes/GuestOnly.jsx';
 import EditAccount from './login-registration/EditAccount.jsx';
 import SuperadminOnly from './routes/SuperadminOnly.jsx';
+import Checkout from './Checkout/Checkout.jsx';
+import OrderSuccess from './Checkout/OrderSuccess.jsx';
 
 
 const router = createBrowserRouter([
@@ -81,6 +83,23 @@ const router = createBrowserRouter([
             <EditAccount />
           </RequireAuth>
         )
+      },
+      {
+        path: '/checkout',
+        element: <Checkout />
+      },
+      {
+        path: "/payment/success",
+        element: (
+          <RequireAuth>
+            <OrderSuccess />
+          </RequireAuth>
+        ),
+        loader: ({ request }) => {
+          const url = new URL(request.url);
+          const orderId = url.searchParams.get("orderId");
+          return { orderId };
+        },
       }
     ],
   },

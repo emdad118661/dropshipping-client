@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import appleWatch from "../assets/bestseller-card/apple-watch.png";
 import Stars from '../CommonComponents/Stars';
 import ProductImagesCarousel from './ProductImagesCarousel';
@@ -11,6 +11,7 @@ const ProductCardDetails = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [qty, setQty] = useState(1);
+  const navigate = useNavigate();
 
   // Fetch product + set defaults once per id
   useEffect(() => {
@@ -179,7 +180,16 @@ const ProductCardDetails = () => {
             <button className="w-full py-3 mt-6 font-semibold text-white transition bg-neutral rounded-full hover:bg-gray-800">
               Add to Cart
             </button>
-            <button className="w-full py-3 mt-2 font-semibold text-white transition bg-neutral rounded-full hover:bg-gray-800">
+            <button className="w-full py-3 mt-2 font-semibold text-white transition bg-neutral rounded-full hover:bg-gray-800" onClick={() => {
+              navigate('/checkout', {
+                state: {
+                  productId: id,
+                  qty,
+                  size: selectedSize,
+                  color: selectedColor,
+                },
+              });
+            }}>
               Buy Now
             </button>
           </div>
