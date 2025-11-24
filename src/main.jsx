@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import error from './assets/Error/error.png';
+import errorImage from './assets/Error/Error.png'
 import Home from './Home/Home.jsx';
 import Products from './Products/Products.jsx';
 import RequireAuth from "./routes/RequireAuth.jsx";
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App></App>,
     errorElement: <div className='flex items-center justify-center'>
-      <img src={error} alt='error-image'></img>
+      <img src={errorImage} alt='error-image'></img>
     </div>,
     loadingElement: <div className='flex items-center justify-center'>
       <span className="loading loading-spinner text-primary"></span>
