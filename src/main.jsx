@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import errorImage from './assets/Error/Error.png'
+import errorImage from './assets/Error/Error.png';
 import Home from './Home/Home.jsx';
 import Products from './Products/Products.jsx';
 import RequireAuth from "./routes/RequireAuth.jsx";
