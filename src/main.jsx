@@ -15,7 +15,6 @@ import CategoryProducts from './Choose-By-Category/CategoryProducts.jsx';
 import Login from './login-registration/Login.jsx';
 import Registration from './login-registration/Registration.jsx';
 import RegistrationByAdmin from './login-registration/RegistrationByAdmin.jsx';
-import RequireAuth from './routes/RequireAuth.jsx';
 import AccountDetails from './login-registration/AccountDetails.jsx';
 import GuestOnly from './routes/GuestOnly.jsx';
 import EditAccount from './login-registration/EditAccount.jsx';
