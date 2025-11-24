@@ -6,12 +6,13 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import error from './assets/Error.png'
+import error from './assets/Error/error.png';
 import Home from './Home/Home.jsx';
 import Products from './Products/Products.jsx';
+import RequireAuth from "./routes/RequireAuth.jsx";
 import ProductCardDetails from './Products/ProductCardDetails.jsx';
 import CategoryProducts from './Choose-By-Category/CategoryProducts.jsx';
-import Login from './login-registration/login.jsx';
+import Login from './login-registration/Login.jsx';
 import Registration from './login-registration/Registration.jsx';
 import RegistrationByAdmin from './login-registration/RegistrationByAdmin.jsx';
 import RequireAuth from './routes/RequireAuth.jsx';
