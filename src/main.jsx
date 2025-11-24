@@ -21,6 +21,7 @@ import EditAccount from './login-registration/EditAccount.jsx';
 import SuperadminOnly from './routes/SuperadminOnly.jsx';
 import Checkout from './Checkout/Checkout.jsx';
 import OrderSuccess from './Checkout/OrderSuccess.jsx';
+import Orders from './Admin-panel/Orders.jsx';
 
 
 const router = createBrowserRouter([
@@ -86,7 +87,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/checkout',
-        element: <Checkout />
+        element: <RequireAuth><Checkout /></RequireAuth>
       },
       {
         path: "/payment/success",
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
           const orderId = url.searchParams.get("orderId");
           return { orderId };
         },
+      },
+      {
+        path: "/orderlist",
+        element: <Orders></Orders>
       }
     ],
   },
