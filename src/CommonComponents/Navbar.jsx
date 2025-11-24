@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MdOutlineAccountCircle, MdSearch } from 'react-icons/md';
 import { LuHeart } from 'react-icons/lu';
 import { RiShoppingCartLine } from 'react-icons/ri';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 const API = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
@@ -121,7 +121,7 @@ const Navbar = () => {
       </li>
       <li className="text-lg font-semibold"><a>Best Seller</a></li>
       <li className="text-lg font-semibold"><a>New Arrival</a></li>
-      <li className="text-lg font-semibold"><a>About</a></li>
+      <li className="text-lg font-semibold"><Link to="/about">About</Link></li>
 
       {/* Mobile-only Wishlist inside dropdown */}
       <li className="md:hidden">

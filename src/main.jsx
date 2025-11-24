@@ -22,6 +22,7 @@ import SuperadminOnly from './routes/SuperadminOnly.jsx';
 import Checkout from './Checkout/Checkout.jsx';
 import OrderSuccess from './Checkout/OrderSuccess.jsx';
 import Orders from './Admin-panel/Orders.jsx';
+import About from './CommonComponents/About.jsx';
 
 
 const router = createBrowserRouter([
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
       {
         path: "/orderlist",
         element: <Orders></Orders>
+      },
+      {
+        path: "/about",
+        element: <About></About>
       }
     ],
   },
