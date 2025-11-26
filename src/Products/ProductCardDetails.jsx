@@ -4,6 +4,11 @@ import appleWatch from "../assets/bestseller-card/apple-watch.png";
 import Stars from '../CommonComponents/Stars';
 import ProductImagesCarousel from './ProductImagesCarousel';
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  import.meta.env.VITE_API_URL ||      // যদি আগের env ব্যবহার করে থাকো
+  "http://localhost:3000";
+
 const ProductCardDetails = () => {
   const { id } = useParams();
 
@@ -18,16 +23,48 @@ const ProductCardDetails = () => {
     const controller = new AbortController();
     (async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/products/${id}`, { signal: controller.signal });
+        const res = await fetch(`${API_BASE_URL}/products/${id}`, {
+          signal: controller.signal,
+        });
+
+        if (!res.ok) {
+          console.error("Failed to fetch product", res.status);
+          return;
+        }
+
         const data = await res.json();
-        setProduct(data);
-        setSelectedSize(Array.isArray(data?.size) && data.size.length ? data.size[0] : null);
-        setSelectedColor(Array.isArray(data?.color) && data.color.length ? data.color[0] : null);
+        console.log("Fetched product:", data); // ডিবাগ করার জন্য
+
+        // ---- normalize color/size fields ----
+        const colors =
+          Array.isArray(data.color) && data.color.length
+            ? data.color
+            : Array.isArray(data.colors) && data.colors.length
+            ? data.colors
+            : [];
+
+        const sizes =
+          Array.isArray(data.size) && data.size.length
+            ? data.size
+            : Array.isArray(data.sizes) && data.sizes.length
+            ? data.sizes
+            : [];
+
+        // product state এ সবসময় color / size নামে রাখছি
+        setProduct({
+          ...data,
+          color: colors,
+          size: sizes,
+        });
+
+        setSelectedColor(colors.length ? colors[0] : null);
+        setSelectedSize(sizes.length ? sizes[0] : null);
         setQty(1);
       } catch (e) {
         if (e.name !== 'AbortError') console.error(e);
       }
     })();
+
     return () => controller.abort();
   }, [id]);
 
@@ -47,20 +84,20 @@ const ProductCardDetails = () => {
     () => [appleWatch, appleWatch, appleWatch, appleWatch, appleWatch],
     []
   );
-  const images = (Array.isArray(product?.images) && product.images.length)
-    ? product.images
-    : fallbackImages;
+  const images =
+    Array.isArray(product?.images) && product.images.length
+      ? product.images
+      : fallbackImages;
 
   return (
     <div className="px-5 mx-auto mt-10 max-w-7xl md:px-0">
-      {/* Small: block (stacked), md+ : flex row */}
       <div className="space-y-6 md:space-y-0 md:flex md:gap-10">
-        {/* Top on small, left on md+ */}
+        {/* Images */}
         <div className="w-full md:w-auto">
           <ProductImagesCarousel key={id} images={images} />
         </div>
 
-        {/* Bottom on small, right on md+ */}
+        {/* Details */}
         <div className="w-full">
           <h2 className="text-3xl font-semibold">{product?.name}</h2>
           <p className="mt-2 text-gray-700">{product?.description}</p>
@@ -76,7 +113,9 @@ const ProductCardDetails = () => {
           <div className="flex flex-col gap-6 mt-6 md:flex-row md:gap-14">
             {/* Color selector */}
             <fieldset className="p-0 m-0 border-0">
-              <legend className="block mb-3 text-sm font-semibold text-gray-800">Color</legend>
+              <legend className="block mb-3 text-sm font-semibold text-gray-800">
+                Color
+              </legend>
               <div className="flex flex-wrap gap-3">
                 {Array.isArray(product?.color) && product.color.length > 0 ? (
                   product.color.map((c) => (
@@ -89,21 +128,29 @@ const ProductCardDetails = () => {
                         checked={selectedColor === c}
                         onChange={() => setSelectedColor(c)}
                       />
-                      <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 transition bg-white border-2 border-gray-200 rounded-full hover:border-gray-300 peer-checked:border-black peer-checked:bg-neutral peer-checked:text-white peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-blue-500 peer-focus-visible:ring-offset-2">
+                      <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 transition bg-white border-2 border-gray-200 rounded-full hover:border-gray-300 peer-checked:border-black peer-checked:bg-neutral peer-checked:text-white">
                         {c}
                       </span>
                     </label>
                   ))
                 ) : (
-                  <span className="text-sm text-gray-500">No colors available</span>
+                  <span className="text-sm text-gray-500">
+                    No colors available
+                  </span>
                 )}
               </div>
-              {selectedColor && <p className="mt-2 text-sm text-gray-600">Selected color: {selectedColor}</p>}
+              {selectedColor && (
+                <p className="mt-2 text-sm text-gray-600">
+                  Selected color: {selectedColor}
+                </p>
+              )}
             </fieldset>
 
             {/* Size selector */}
             <fieldset className="p-0 m-0 border-0">
-              <legend className="block mb-3 text-sm font-semibold text-gray-800">Size</legend>
+              <legend className="block mb-3 text-sm font-semibold text-gray-800">
+                Size
+              </legend>
               <div className="flex flex-wrap gap-3">
                 {Array.isArray(product?.size) && product.size.length > 0 ? (
                   product.size.map((s) => (
@@ -116,20 +163,25 @@ const ProductCardDetails = () => {
                         checked={selectedSize === s}
                         onChange={() => setSelectedSize(s)}
                       />
-                      <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 transition bg-white border-2 border-gray-200 rounded-full hover:border-gray-300 peer-checked:border-black peer-checked:bg-neutral peer-checked:text-white peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-blue-500 peer-focus-visible:ring-offset-2">
+                      <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 transition bg-white border-2 border-gray-200 rounded-full hover:border-gray-300 peer-checked:border-black peer-checked:bg-neutral peer-checked:text-white">
                         {s}
                       </span>
                     </label>
                   ))
                 ) : (
-                  <span className="text-sm text-gray-500">No sizes available</span>
+                  <span className="text-sm text-gray-500">
+                    No sizes available
+                  </span>
                 )}
               </div>
-              {selectedSize && <p className="mt-2 text-sm text-gray-600">Selected size: {selectedSize}</p>}
+              {selectedSize && (
+                <p className="mt-2 text-sm text-gray-600">
+                  Selected size: {selectedSize}
+                </p>
+              )}
             </fieldset>
           </div>
 
-          {/* Quantity selector */}
           <div className="mt-6">
             <label htmlFor="qty" className="block mb-2 text-sm font-semibold text-gray-800">
               Quantity
@@ -200,3 +252,5 @@ const ProductCardDetails = () => {
 };
 
 export default ProductCardDetails;
+
+

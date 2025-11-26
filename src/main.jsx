@@ -23,6 +23,10 @@ import Checkout from './Checkout/Checkout.jsx';
 import OrderSuccess from './Checkout/OrderSuccess.jsx';
 import Orders from './Admin-panel/Orders.jsx';
 import About from './CommonComponents/About.jsx';
+import AdminOnly from './routes/AdminOnly.jsx';
+import ManageProducts from './Admin-panel/ManageProducts.jsx';
+import AddProducts from './Admin-panel/AddProducts.jsx';
+import EditProduct from './Admin-panel/EditProduct.jsx';
 
 
 const router = createBrowserRouter([
@@ -105,7 +109,41 @@ const router = createBrowserRouter([
       },
       {
         path: "/orderlist",
-        element: <Orders></Orders>
+        element: (<RequireAuth>
+          <AdminOnly>
+            <Orders></Orders>
+          </AdminOnly>
+        </RequireAuth>)
+      },
+      {
+        path: "/admin/products",
+        element: (
+          <RequireAuth>
+            <AdminOnly>
+              <ManageProducts />
+            </AdminOnly>
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "/admin/addproduct",
+        element: (
+          <RequireAuth>
+            <AdminOnly>
+              <AddProducts />
+            </AdminOnly>
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "/admin/products/:id/edit",
+        element: (
+          <RequireAuth>
+            <AdminOnly>
+              <EditProduct />
+            </AdminOnly>
+          </RequireAuth>
+        ),
       },
       {
         path: "/about",
