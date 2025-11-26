@@ -1,12 +1,14 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+// src/components/ProductCardDetails.jsx
+
+import React, { useEffect, useMemo, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import appleWatch from "../assets/bestseller-card/apple-watch.png";
-import Stars from '../CommonComponents/Stars';
-import ProductImagesCarousel from './ProductImagesCarousel';
+import Stars from "../CommonComponents/Stars";
+import ProductImagesCarousel from "./ProductImagesCarousel";
 
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
-  import.meta.env.VITE_API_URL ||      // যদি আগের env ব্যবহার করে থাকো
+  import.meta.env.VITE_API_URL ||
   "http://localhost:3000";
 
 const ProductCardDetails = () => {
@@ -26,52 +28,32 @@ const ProductCardDetails = () => {
         const res = await fetch(`${API_BASE_URL}/products/${id}`, {
           signal: controller.signal,
         });
-
         if (!res.ok) {
           console.error("Failed to fetch product", res.status);
           return;
         }
-
         const data = await res.json();
-        console.log("Fetched product:", data); // ডিবাগ করার জন্য
+        console.log("Product details:", data);
 
-        // ---- normalize color/size fields ----
-        const colors =
-          Array.isArray(data.color) && data.color.length
-            ? data.color
-            : Array.isArray(data.colors) && data.colors.length
-            ? data.colors
-            : [];
-
-        const sizes =
-          Array.isArray(data.size) && data.size.length
-            ? data.size
-            : Array.isArray(data.sizes) && data.sizes.length
-            ? data.sizes
-            : [];
-
-        // product state এ সবসময় color / size নামে রাখছি
-        setProduct({
-          ...data,
-          color: colors,
-          size: sizes,
-        });
-
-        setSelectedColor(colors.length ? colors[0] : null);
-        setSelectedSize(sizes.length ? sizes[0] : null);
+        setProduct(data);
+        setSelectedSize(
+          Array.isArray(data.size) && data.size.length ? data.size[0] : null
+        );
+        setSelectedColor(
+          Array.isArray(data.color) && data.color.length ? data.color[0] : null
+        );
         setQty(1);
       } catch (e) {
-        if (e.name !== 'AbortError') console.error(e);
+        if (e.name !== "AbortError") console.error(e);
       }
     })();
-
     return () => controller.abort();
   }, [id]);
 
   // stock clamp
   const stock = Number.isFinite(product?.stock) ? product.stock : 99;
-  const dec = () => setQty(q => Math.max(1, q - 1));
-  const inc = () => setQty(q => Math.min(stock, q + 1));
+  const dec = () => setQty((q) => Math.max(1, q - 1));
+  const inc = () => setQty((q) => Math.min(stock, q + 1));
   const onQtyInput = (e) => {
     let n = parseInt(e.target.value, 10);
     if (Number.isNaN(n)) n = 1;
@@ -182,11 +164,19 @@ const ProductCardDetails = () => {
             </fieldset>
           </div>
 
+          {/* Quantity selector */}
           <div className="mt-6">
-            <label htmlFor="qty" className="block mb-2 text-sm font-semibold text-gray-800">
+            <label
+              htmlFor="qty"
+              className="block mb-2 text-sm font-semibold text-gray-800"
+            >
               Quantity
             </label>
-            <div className="inline-flex items-center bg-white border border-gray-300 rounded-full" role="group" aria-label="Choose quantity">
+            <div
+              className="inline-flex items-center bg-white border border-gray-300 rounded-full"
+              role="group"
+              aria-label="Choose quantity"
+            >
               <button
                 type="button"
                 onClick={dec}
@@ -206,7 +196,10 @@ const ProductCardDetails = () => {
                 value={qty}
                 onChange={onQtyInput}
                 onWheel={(e) => e.currentTarget.blur()}
-                onKeyDown={(e) => (e.key === 'e' || e.key === '+' || e.key === '-') && e.preventDefault()}
+                onKeyDown={(e) =>
+                  (e.key === "e" || e.key === "+" || e.key === "-") &&
+                  e.preventDefault()
+                }
                 className="w-12 bg-transparent text-center text-base text-gray-900 outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 aria-live="polite"
               />
@@ -222,7 +215,9 @@ const ProductCardDetails = () => {
             </div>
             {Number.isFinite(product?.stock) ? (
               <p className="mt-1 text-xs text-gray-500">
-                {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
+                {product.stock > 0
+                  ? `${product.stock} in stock`
+                  : "Out of stock"}
               </p>
             ) : null}
           </div>
@@ -232,16 +227,19 @@ const ProductCardDetails = () => {
             <button className="w-full py-3 mt-6 font-semibold text-white transition bg-neutral rounded-full hover:bg-gray-800">
               Add to Cart
             </button>
-            <button className="w-full py-3 mt-2 font-semibold text-white transition bg-neutral rounded-full hover:bg-gray-800" onClick={() => {
-              navigate('/checkout', {
-                state: {
-                  productId: id,
-                  qty,
-                  size: selectedSize,
-                  color: selectedColor,
-                },
-              });
-            }}>
+            <button
+              className="w-full py-3 mt-2 font-semibold text-white transition bg-neutral rounded-full hover:bg-gray-800"
+              onClick={() => {
+                navigate("/checkout", {
+                  state: {
+                    productId: id,
+                    qty,
+                    size: selectedSize,
+                    color: selectedColor,
+                  },
+                });
+              }}
+            >
               Buy Now
             </button>
           </div>
@@ -252,5 +250,3 @@ const ProductCardDetails = () => {
 };
 
 export default ProductCardDetails;
-
-

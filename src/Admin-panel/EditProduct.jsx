@@ -15,7 +15,7 @@ const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
 const EditProduct = () => {
-  const { id } = useParams();         // /admin/products/:id/edit থেকে id
+  const { id } = useParams(); // /admin/products/:id/edit
   const navigate = useNavigate();
 
   const [color, setColor] = useState([]);
@@ -62,10 +62,9 @@ const EditProduct = () => {
           sellerName: data.sellerName || "",
         });
 
-        setColor(Array.isArray(data.colors) ? data.colors : []);
-        setSize(Array.isArray(data.sizes) ? data.sizes : []);
-
-        // images এখন backend এ সেভ করা হচ্ছে না, তাই এখানে pre-fill করছি না
+        // MongoDB field: color, size
+        setColor(Array.isArray(data.color) ? data.color : []);
+        setSize(Array.isArray(data.size) ? data.size : []);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -76,7 +75,7 @@ const EditProduct = () => {
     loadProduct();
   }, [id]);
 
-  // ------- image handlers (শুধু UI preview এর জন্য) -------
+  // ------- image handlers (UI only) -------
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files || []);
     if (!files.length) return;
@@ -138,24 +137,27 @@ const EditProduct = () => {
         category: form.category,
         description: form.description,
         sellerName: form.sellerName,
-        colors: color,
-        sizes: size,
-        // images এখন backend এ আপডেট পাঠাচ্ছি না
+        color,
+        size,
       };
 
-      const res = await fetch(`${API_BASE_URL}/products/${id}`, {
-        method: "PUT",
+      const url = `${API_BASE_URL}/admin/products/${id}`;
+      console.log("PATCH URL:", url);
+
+      const res = await fetch(url, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify(body),
       });
+
+      console.log("PATCH status:", res.status);
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.message || "Failed to update product");
       }
 
-      // success হলে manage products এ ফিরে যাব
       navigate("/admin/products");
     } catch (err) {
       setError(err.message);
@@ -228,7 +230,7 @@ const EditProduct = () => {
               </Select>
             </div>
 
-            {/* Images (UI only, backend-এ এখনো সংরক্ষণ করছি না) */}
+            {/* Images (UI only) */}
             <div className="mt-5">
               <Label className="mb-2 block" htmlFor="file-upload-helper-text">
                 Upload up to 5 images
