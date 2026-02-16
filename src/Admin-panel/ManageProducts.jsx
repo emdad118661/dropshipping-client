@@ -73,7 +73,7 @@ const ManageProducts = () => {
         throw new Error(body.message || "Failed to delete product");
       }
 
-      // local state আপডেট
+      // local state update
       setProducts((prev) => prev.filter((p) => p._id !== id));
 
       // success alert

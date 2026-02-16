@@ -30,7 +30,7 @@ export default function CategoryProducts() {
 
     // optional pagination
     const [page, setPage] = useState(1);
-    const limit = 0; // 0 = no limit; চাইলে 20 দিন
+    const limit = 0; // 0 = no limit;
 
     const API = import.meta.env.VITE_API_URL;
 
@@ -44,7 +44,7 @@ export default function CategoryProducts() {
         // Generic route:
         return `${API}/products/category/${slug}${query ? `?${query}` : ""}`;
 
-        // If you only created fixed routes (/products/clothing etc) use:
+        // If only created fixed routes (/products/clothing etc) use:
         // return `${API}/products/${slug}${query ? `?${query}` : ""}`;
     }, [API, slug, sortBy, page, limit]);
 
@@ -70,7 +70,7 @@ export default function CategoryProducts() {
         return () => controller.abort();
     }, [apiUrl]);
 
-    // slug বদলালে পেজ/সোর্ট reset করতে চাইলে:
+    // slug or reset:
     useEffect(() => {
         setSortBy("featured");
         setPage(1);

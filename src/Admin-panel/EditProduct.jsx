@@ -267,7 +267,7 @@ const EditProduct = () => {
                         className="absolute top-1 right-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-white text-xs hover:bg-red-700"
                         aria-label="Remove image"
                       >
-                        ×
+                        x
                       </button>
                     </div>
                   ))}

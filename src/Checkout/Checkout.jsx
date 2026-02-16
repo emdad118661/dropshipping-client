@@ -108,7 +108,6 @@ export default function Checkout() {
           cus_email: form.email,
           cus_phone: form.phone,
           cus_address: form.address,
-          // optional: you can create a pending order first and pass orderId
         }),
       });
       const data = await res.json();

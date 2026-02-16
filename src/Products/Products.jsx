@@ -21,14 +21,14 @@ const Products = () => {
     return () => controller.abort();
   }, []);
 
-  // কোন দাম ধরা হবে (salePrice থাকলে সেটাই, নাহলে price)
+  //salePrice or price
   const getPrice = (p) => {
     const val = p?.salePrice ?? p?.price;
     const num = Number(val);
     return Number.isFinite(num) ? num : 0;
   };
 
-  // নাম sort করার জন্য locale-aware compare
+  // sort  locale-aware compare
   const collator = useMemo(
     () => new Intl.Collator(undefined, { sensitivity: 'base', numeric: true }),
     []

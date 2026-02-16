@@ -87,7 +87,7 @@ export default function TagsInput({
               className="rounded-full bg-blue-100 px-1.5 text-blue-700 hover:bg-blue-200"
               aria-label={`Remove ${t}`}
             >
-              ×
+              x
             </button>
           </span>
         ))}

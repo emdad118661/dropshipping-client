@@ -92,7 +92,7 @@ const AddProducts = () => {
         return;
       }
 
-      // MongoDB ফিল্ডের নাম: color, size
+      // MongoDB field name: color, size
       const body = {
         name: form.name,
         price: Number(form.price),

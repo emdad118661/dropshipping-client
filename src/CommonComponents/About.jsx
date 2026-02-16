@@ -33,7 +33,7 @@ export default function About() {
               <li>Authentic & curated products from trusted suppliers</li>
               <li>Transparent pricing with deals and offers</li>
               <li>Nationwide delivery and Cash on Delivery (COD)</li>
-              <li>Size–color variants, zoomable images, clear descriptions</li>
+              <li>Size-color variants, zoomable images, clear descriptions</li>
               <li>Secure checkout and order status updates</li>
             </ul>
           </div>
@@ -52,12 +52,12 @@ export default function About() {
             <div className="rounded-lg border p-4">
               <h4 className="font-semibold">Delivery & Returns</h4>
               <p className="mt-2 text-sm text-gray-700">
-                Dhaka: ~2–3 business days; Outside Dhaka: ~3–5 business days (depends on courier/area).
+                Dhaka: ~2-3 business days; Outside Dhaka: ~3-5 business days (depends on courier/area).
                 Returns/exchanges apply as per policy.
               </p>
             </div>
             <div className="rounded-lg border p-4">
-              <h4 className="font-semibold">What’s next</h4>
+              <h4 className="font-semibold">What's next</h4>
               <p className="mt-2 text-sm text-gray-700">
                 Online payment gateway, order tracking, wishlists and more categories are coming soon.
               </p>
